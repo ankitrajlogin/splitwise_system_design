@@ -22,7 +22,7 @@ The SplitWise is an application to help groups manage and split expenses efficie
 To add a new user:
 CREATE_USER <userId> <name> <email> <mobile>
 *Example:*
-CREATE_USER u1 Alice alice@example.com 1234567890
+CREATE_USER u1 Ankit ankitraj@gmail.com 1234567890
 
 
 ### 2. Creating a Group
@@ -74,7 +74,7 @@ SHOW G1 u2
 
 
 ## Sample Session
-CREATE_USER u1 Alice alice@example.com 1234567890 CREATE_USER u2 Bob bob@example.com 2345678901 CREATE_USER u3 Charlie charlie@example.com 3456789012 CREATE_GROUP G1 3 u1 u2 u3 EXPENSE G1 u1 1200 3 u1 u2 u3 EQUAL SHOW G1
+CREATE_USER u1 Ankit ankitrajlogin@gmail.com 1234567890 CREATE_USER u2 Rahul rahullogin@gmail.com 2345678901 CREATE_USER u3 shayam shayam@gmail.com 3456789012 CREATE_GROUP G1 3 u1 u2 u3 EXPENSE G1 u1 1200 3 u1 u2 u3 EQUAL SHOW G1
 
 
 **Output:**
