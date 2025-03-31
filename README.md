@@ -1,11 +1,10 @@
-# Expense Sharing Application
+# SplitWise System Design
 
 ## Overview
 
-The Expense Sharing Application is a C++ console-based program designed to help groups manage and split expenses efficiently. It allows users to create groups, add members, record expenses with various splitting methods, and view simplified balances among group members.
+The SplitWise is an application to help groups manage and split expenses efficiently. It allows users to create groups, add members, record expenses with various splitting methods, and view simplified balances among group members.
 
 ## Features
-
 - **User Management**: Create and manage users with unique IDs, names, emails, and mobile numbers.
 - **Group Management**: Create groups, add members, and manage group compositions.
 - **Expense Recording**: Add expenses to groups with flexible splitting options:
