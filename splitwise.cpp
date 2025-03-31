@@ -27,6 +27,25 @@ struct User {
     User() {}
     User(const string &id, const string &n, const string &e, const string &m)
         : userId(id), name(n), email(e), mobile(m) {}
+
+public: 
+    string getName(){
+        return name ; 
+    }
+
+    string getEmail(){
+        return email ; 
+    }
+
+    string getMobileNumber(){
+        return mobile ; 
+    }
+
+    string getUserId(){
+        return userId ; 
+    }
+
+    
 };
 
 // Group class: Each group has a name, a list of members (user IDs),
@@ -129,6 +148,27 @@ public:
     // Check if a user is a member of the group.
     bool isMember(const string &userId) const {
         return find(members.begin(), members.end(), userId) != members.end();
+    }
+
+
+
+    void addMember(const string &newUserId) {
+        // Check if the user is already a member
+        if (find(members.begin(), members.end(), newUserId) != members.end()) {
+            throw invalid_argument("User " + newUserId + " is already a member of the group " + groupName);
+        }
+
+        // Add the new member to the members list
+        members.push_back(newUserId);
+
+        // Initialize balances for the new member with existing members
+        balances[newUserId] = unordered_map<string, double>();
+        for (const auto &member : members) {
+            if (member != newUserId) {
+                balances[newUserId][member] = 0.0;
+                balances[member][newUserId] = 0.0;
+            }
+        }
     }
     
     // Process an expense within the group.
@@ -264,6 +304,21 @@ public:
         }
         groups[groupName] = Group(groupName, userIds);
     }
+
+    void addUserToGroup(const string &groupName, const string &userId) {
+        // Check if the group exists
+        if (groups.find(groupName) == groups.end()) {
+            throw invalid_argument("Group " + groupName + " does not exist.");
+        }
+
+        // Check if the user exists globally
+        if (users.find(userId) == users.end()) {
+            throw invalid_argument("User " + userId + " does not exist.");
+        }
+
+        // Add the user to the group
+        groups[groupName].addMember(userId);
+    }
     
     // Process an expense within a group.
     void addExpense(const string &groupName, const string &payer, double amount, 
@@ -335,6 +390,12 @@ int main() {
                     groupUsers.push_back(uid);
                 }
                 app.createGroup(groupName, groupUsers);
+            }
+            // ADD_USER_TO_GROUP <groupName> <userId>
+            else if(command == "ADD_USER_TO_GROUP") {
+                string groupName, userId;
+                iss >> groupName >> userId;
+                app.addUserToGroup(groupName, userId);
             }
             else if (command == "EXPENSE") {
                 string groupName;
